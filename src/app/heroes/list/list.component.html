@@ -1,0 +1,48 @@
+<h3>Listado de heroes</h3>
+
+<!-- <div *ngIf="deleteHero"> -->
+  <!-- Es lo mismo que esto -->
+<!-- <div *ngIf="!!deleteHero">
+  <h3>Héroe borrado <small class="text-danger">{{deleteHero}}</small></h3>
+</div> -->
+
+
+<!-- <h3>No ha borrado nada</h3> -->
+<!-- Para condicionar el mensaje -->
+<!-- <h3 *ngIf="!deleteHero">No ha borrado nada</h3> -->
+
+<!-- Para no tener que tener las dos condiciones anteriores,
+se mete la última en un  ngTemplate y en la primera se pone un else
+con un nombre haciendo referencia al template-->
+
+<div *ngIf="!!deleteHero; else nadaQueBorrar">
+  <h3>Héroe borrado <small class="text-danger">{{deleteHero}}</small></h3>
+</div>
+<ng-template #nadaQueBorrar>
+  <h3>No ha borrado nada</h3>
+</ng-template>
+
+
+<!-- Para mostra el botón sólo si hay algo que borrar
+se pone dentro condición ngIf-->
+<button
+  *ngIf="heroNames.length>0"
+  (click)="removeLastHero()"
+  class="btn btn-outline-danger">
+  Borrar último héroe
+</button>
+
+
+
+<ul class="mt-2 list-group">
+  <!-- <li class="list-group-item">Spiderman</li>
+  <li class="list-group-item">Ironman</li>
+  <li class="list-group-item">Hulk</li>
+  <li class="list-group-item">Thor</li> -->
+  <li *ngFor="let name of heroNames"
+    class="list-group-item">
+    {{ name }}</li>
+    <!-- Para ponerlo en negrita -->
+    <!-- <strong>{{ name }}</strong></li> -->
+
+</ul>
